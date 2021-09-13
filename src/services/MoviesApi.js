@@ -9,7 +9,9 @@ const makeCustomThen = () => {
     if (response.ok) {
       return response.json();
     }
-    return Promise.reject(new Error("Something went wrong..."));
+    return Promise.reject(
+      new Error("Something went wrong, go back and try again.")
+    );
   };
 };
 

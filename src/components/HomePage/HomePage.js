@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 import { getTrendingMovies } from "../../services/MoviesApi";
 
 const HomePage = () => {
   const [movies, setMovies] = useState(null);
-  const { url } = useRouteMatch();
 
   useEffect(() => {
-    getTrendingMovies().then((response) => {
-      setMovies([...response.results]);
-    });
+    getTrendingMovies()
+      .then((response) => {
+        setMovies([...response.results]);
+      })
+      .catch(({ message }) => toast.error(message));
   }, []);
 
   return (

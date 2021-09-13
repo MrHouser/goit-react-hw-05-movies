@@ -1,4 +1,5 @@
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Navigation from "./components/Navigation/Navigation";
 import MoviesPage from "./components/MoviesPage/MoviesPage";
 import MovieDetailsPage from "./components/MovieDetailsPage/MovieDetailsPage";
@@ -22,6 +23,7 @@ function App() {
           <MoviesPage />
         </Route>
       </Switch>
+      <ToastContainer position="top-center" autoClose={3000} />
     </>
   );
 }

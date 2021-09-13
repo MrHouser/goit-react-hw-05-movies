@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { getMovieCast } from "../../services/MoviesApi";
 
 const pictureBasePath = "https://image.tmdb.org/t/p/w200";
@@ -12,7 +13,9 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    getMovieCast(movieId).then((result) => setCast([...result.cast]));
+    getMovieCast(movieId)
+      .then((result) => setCast([...result.cast]))
+      .catch(({ message }) => toast.error(message));
   }, []);
 
   return (

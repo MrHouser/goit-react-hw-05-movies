@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams, NavLink, useRouteMatch, Route } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getMovieDetails } from "../../services/MoviesApi";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews/Reviews";
+import "react-toastify/dist/ReactToastify.css";
 
 const pictureBasePath = "https://image.tmdb.org/t/p/w300";
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
-  const { url } = useRouteMatch();
+  const { url, path } = useRouteMatch();
 
   useEffect(() => {
-    getMovieDetails(movieId).then(setMovie);
+    getMovieDetails(movieId)
+      .then(setMovie)
+      .catch(({ message }) => toast.error(message));
   }, [movieId]);
 
   return (
@@ -47,11 +51,11 @@ const MovieDetailsPage = () => {
             </ul>
           </section>
 
-          <Route path="/movies/:movieId/cast">
+          <Route path={`${path}/cast`}>
             <Cast />
           </Route>
 
-          <Route path="/movies/:movieId/reviews">
+          <Route path={`${path}/reviews`}>
             <Reviews />
           </Route>
         </>
