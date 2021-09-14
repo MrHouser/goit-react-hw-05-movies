@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import s from "./Searchbar.module.css";
 
 const Searchbar = ({ onSubmit }) => {
   const [value, setValue] = useState("");
@@ -10,7 +12,7 @@ const Searchbar = ({ onSubmit }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (value.trim() === "") {
-      return alert("Enter query to search");
+      return toast.warning("Enter query to search");
     }
     onSubmit(value);
     reset();
@@ -19,16 +21,20 @@ const Searchbar = ({ onSubmit }) => {
   const handleInputChange = (event) => {
     setValue(event.target.value);
   };
+
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={s.form}>
       <input
+        className={s.input}
         type="text"
         autoComplete="off"
         autoFocus
         value={value}
         onChange={handleInputChange}
       ></input>
-      <button type="submit">Search</button>
+      <button type="submit" className={s.button}>
+        Search
+      </button>
     </form>
   );
 };

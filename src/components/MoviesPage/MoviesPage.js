@@ -1,11 +1,11 @@
-import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
+import { useRouteMatch, useHistory, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Searchbar from "../Searchbar/Searchbar";
 import { getMoviesByQuery } from "../../services/MoviesApi";
+import MoviesList from "../MoviesList/MoviesList";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(null);
   const { url } = useRouteMatch();
   const location = useLocation();
@@ -14,29 +14,21 @@ const MoviesPage = () => {
   const urlQuery = new URLSearchParams(location.search).get("query") || null;
 
   useEffect(() => {
-    if (!query) {
+    if (!urlQuery) {
       return;
     }
 
-    if (urlQuery !== null) {
-      getMoviesByQuery(query)
-        .then((response) => {
-          if (response.total_results === 0) {
-            return toast.error(`No result for "${query}". Try another query`);
-          }
-          setMovies([...response.results]);
-        })
-        .catch(({ message }) => toast.error(message));
-    }
-
-    // history.push({
-    //   ...location,
-    //   search: `query=${query}`,
-    // });
-  }, [query, urlQuery]);
+    getMoviesByQuery(urlQuery)
+      .then((response) => {
+        if (response.total_results === 0) {
+          return toast.error(`No result for "${urlQuery}". Try another query`);
+        }
+        setMovies([...response.results]);
+      })
+      .catch(({ message }) => toast.error(message));
+  }, [urlQuery]);
 
   const onSubmit = (query) => {
-    setQuery(query);
     history.push({
       ...location,
       search: `query=${query}`,
@@ -46,14 +38,7 @@ const MoviesPage = () => {
   return (
     <>
       <Searchbar onSubmit={onSubmit} />
-      <ul>
-        {movies &&
-          movies.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={`${url}/${id}`}>{title}</Link>
-            </li>
-          ))}
-      </ul>
+      {movies && <MoviesList movies={movies} path={url} location={location} />}
     </>
   );
 };

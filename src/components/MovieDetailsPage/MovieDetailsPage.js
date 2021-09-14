@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams, NavLink, useRouteMatch, Route } from "react-router-dom";
+import {
+  useParams,
+  NavLink,
+  useRouteMatch,
+  Route,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import { getMovieDetails } from "../../services/MoviesApi";
 import Cast from "../Cast/Cast";
@@ -12,6 +19,8 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const { url, path } = useRouteMatch();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     getMovieDetails(movieId)
@@ -19,8 +28,15 @@ const MovieDetailsPage = () => {
       .catch(({ message }) => toast.error(message));
   }, [movieId]);
 
+  const onGoBackClick = () => {
+    history.push(location?.state?.from ?? "/");
+  };
+
   return (
     <>
+      <button type="button" onClick={onGoBackClick}>
+        Go back
+      </button>
       {movie && (
         <>
           <article>
@@ -40,7 +56,7 @@ const MovieDetailsPage = () => {
             ))}
           </article>
           <section>
-            <h4>additional information</h4>
+            <h4>Additional information</h4>
             <ul>
               <li>
                 <NavLink to={`${url}/cast`}>Cast</NavLink>
