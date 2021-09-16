@@ -15,7 +15,7 @@
 }
 
 .card:hover {
-  box-shadow: 4px 4px 8px 0px #fff;
+  box-shadow: 4px 4px 8px 0px #000;
   transform: scale(1.05);
   border-radius: 10px;
 }
