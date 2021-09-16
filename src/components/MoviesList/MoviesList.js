@@ -18,7 +18,10 @@ export default function MoviesList({ movies, location, path }) {
               <div className={s.card}>
                 <img
                   className={s.image}
-                  src={`${pictureBasePath}${poster_path}`}
+                  src={
+                    (poster_path && `${pictureBasePath}${poster_path}`) ||
+                    "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png"
+                  }
                   alt={title}
                 />
                 <p className={s.title}>{title}</p>
