@@ -1,0 +1,130 @@
+.pageWrapper {
+  padding: 80px;
+  position: relative;
+}
+
+.article {
+  padding-bottom: 22px;
+}
+
+.button {
+  position: absolute;
+  top: 20px;
+  background-color: #343835;
+  outline: none;
+  border: none;
+  color: #fff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 250ms linear;
+}
+
+.button:hover,
+.button:focus {
+  color: tomato;
+}
+
+.button:active {
+  box-shadow: 0px 0px 8px 1px #fff inset;
+}
+
+.article {
+  display: flex;
+}
+
+.infoWrapper {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.title,
+.score,
+.overviewTitle,
+.overview,
+.genresTitle,
+.infoTitle {
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.score,
+.overviewTitle,
+.genresTitle,
+.infoTitle {
+  font-size: 18px;
+}
+
+.score,
+.overview {
+  margin-bottom: 32px;
+}
+
+.scoreValue {
+  color: tomato;
+}
+
+.overviewTitle,
+.genresTitle {
+  margin-bottom: 12px;
+}
+
+.overview {
+  padding-right: 400px;
+  font-size: 16px;
+  line-height: 1.38;
+}
+
+.genre:not(:last-child) {
+  margin-right: 8px;
+}
+
+.section {
+  padding: 22px 0;
+}
+
+.infoTitle {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.infoList {
+  display: flex;
+  justify-content: center;
+}
+
+.mr {
+  margin-right: 16px;
+}
+
+.infoLink {
+  display: inline-block;
+  padding: 15px 12px;
+  font-size: 16px;
+  color: #8a8a8a;
+  transition: color 250ms linear;
+}
+
+.infoLink:hover {
+  color: #fff;
+}
+
+.infoLinkActive {
+  color: #fff;
+  position: relative;
+}
+
+.infoLinkActive::after {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: tomato;
+  content: "";
+  bottom: 0;
+  left: 0;
+}

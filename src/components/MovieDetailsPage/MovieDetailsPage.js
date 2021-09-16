@@ -12,6 +12,7 @@ import { getMovieDetails } from "../../services/MoviesApi";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews/Reviews";
 import "react-toastify/dist/ReactToastify.css";
+import s from "./MovieDetailsPage.module.css";
 
 const pictureBasePath = "https://image.tmdb.org/t/p/w300";
 
@@ -33,36 +34,56 @@ const MovieDetailsPage = () => {
   };
 
   return (
-    <>
-      <button type="button" onClick={onGoBackClick}>
+    <div className={s.pageWrapper}>
+      <button type="button" onClick={onGoBackClick} className={s.button}>
         Go back
       </button>
       {movie && (
         <>
-          <article>
+          <article className={s.article}>
             <img
               src={`${pictureBasePath}/${movie.poster_path}`}
               alt={`${movie.title} poster`}
+              className={s.image}
             ></img>
-            <h3>
-              {movie.title} ({movie.release_date.split("", 4)})
-            </h3>
-            <p>User Score: {movie.vote_average}</p>
-            <h4>Overview</h4>
-            <p>{movie.overview}</p>
-            <h4>Genres</h4>
-            {movie.genres.map(({ id, name }) => (
-              <span key={id}>{name}</span>
-            ))}
+            <div className={s.infoWrapper}>
+              <h3 className={s.title}>
+                {movie.title} ({movie.release_date.split("", 4)})
+              </h3>
+              <p className={s.score}>
+                User Score:{" "}
+                <span className={s.scoreValue}>{movie.vote_average}</span>
+              </p>
+              <h4 className={s.overviewTitle}>Overview</h4>
+              <p className={s.overview}>{movie.overview}</p>
+              <h4 className={s.genresTitle}>Genres</h4>
+              {movie.genres.map(({ id, name }) => (
+                <span key={id} className={s.genre}>
+                  {name}
+                </span>
+              ))}
+            </div>
           </article>
-          <section>
-            <h4>Additional information</h4>
-            <ul>
-              <li>
-                <NavLink to={`${url}/cast`}>Cast</NavLink>
+          <section className={s.section}>
+            <h4 className={s.infoTitle}>Additional information</h4>
+            <ul className={s.infoList}>
+              <li className={s.infoListItem}>
+                <NavLink
+                  to={`${url}/cast`}
+                  className={`${s.infoLink} ${s.mr}`}
+                  activeClassName={s.infoLinkActive}
+                >
+                  Cast
+                </NavLink>
               </li>
               <li>
-                <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+                <NavLink
+                  to={`${url}/reviews`}
+                  className={s.infoLink}
+                  activeClassName={s.infoLinkActive}
+                >
+                  Reviews
+                </NavLink>
               </li>
             </ul>
           </section>
@@ -76,7 +97,7 @@ const MovieDetailsPage = () => {
           </Route>
         </>
       )}
-    </>
+    </div>
   );
 };
 

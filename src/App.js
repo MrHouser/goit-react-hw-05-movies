@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./components/Navigation/Navigation";
 
 const HomePage = lazy(() =>

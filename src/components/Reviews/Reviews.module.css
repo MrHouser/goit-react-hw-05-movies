@@ -1,0 +1,24 @@
+.section {
+  padding-top: 22px;
+}
+
+.list {
+  padding: 0 76.5px;
+}
+
+.listItem:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.author {
+  margin-top: 0;
+}
+
+.authorName {
+  color: tomato;
+}
+
+.review {
+  font-size: 16px;
+  line-height: 1.38;
+}

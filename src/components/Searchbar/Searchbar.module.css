@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.input {
+  margin-right: 12px;
+  width: 320px;
+  padding: 10px 15px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: #343835;
+  color: #fff;
+}
+
+.button {
+  background-color: #343835;
+  outline: none;
+  border: none;
+  color: #fff;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  transition: color 250ms linear;
+}
+
+.button:hover,
+.button:focus {
+  color: tomato;
+}
+
+.button:active {
+  box-shadow: 0px 0px 8px 1px #fff inset;
+}

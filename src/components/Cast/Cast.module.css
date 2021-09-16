@@ -1,0 +1,33 @@
+.section {
+  padding-top: 22px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+  padding: 0 76.5px;
+}
+
+.listItem {
+  margin: 15px;
+}
+
+.image {
+  width: 150px;
+  height: 225px;
+}
+
+.name,
+.character {
+  max-width: 150px;
+  margin: 0;
+}
+
+.name {
+  padding: 10px 0;
+  height: 56px;
+}
+.character {
+  font-size: 14px;
+}

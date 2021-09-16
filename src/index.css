@@ -30,3 +30,8 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  padding-left: 80px;
+  padding-right: 80px;
+}

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getMovieCast } from "../../services/MoviesApi";
+import s from "./Cast.module.css";
 
 const pictureBasePath = "https://image.tmdb.org/t/p/w200";
 const pictureBlank =
@@ -19,11 +20,11 @@ const Cast = () => {
   }, []);
 
   return (
-    <section>
-      <ul>
+    <section className={s.section}>
+      <ul className={s.list}>
         {cast &&
           cast.map(({ id, profile_path, name, character }) => (
-            <li key={id}>
+            <li key={id} className={s.listItem}>
               <img
                 src={
                   profile_path
@@ -31,9 +32,10 @@ const Cast = () => {
                     : pictureBlank
                 }
                 alt={`${name}`}
+                className={s.image}
               ></img>
-              <p>{name}</p>
-              <p>
+              <p className={s.name}>{name}</p>
+              <p className={s.character}>
                 {character !== ""
                   ? `Character: ${character}`
                   : "Character: n/a"}

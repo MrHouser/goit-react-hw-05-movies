@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+
 import s from "./Searchbar.module.css";
 
 const Searchbar = ({ onSubmit }) => {
@@ -31,6 +32,7 @@ const Searchbar = ({ onSubmit }) => {
         autoFocus
         value={value}
         onChange={handleInputChange}
+        placeholder="Enter a movie name"
       ></input>
       <button type="submit" className={s.button}>
         Search

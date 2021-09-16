@@ -36,10 +36,10 @@ const MoviesPage = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <Searchbar onSubmit={onSubmit} />
       {movies && <MoviesList movies={movies} path={url} location={location} />}
-    </>
+    </div>
   );
 };
 

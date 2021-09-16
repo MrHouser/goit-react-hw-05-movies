@@ -1,5 +1,19 @@
 .header {
   background-color: #343835;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  margin: 0;
+  font-size: 32px;
+  transform: translateY(-50%);
+}
+
+.logoAccent {
+  color: tomato;
 }
 
 nav {
