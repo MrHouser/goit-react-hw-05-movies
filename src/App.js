@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,17 +24,13 @@ function App() {
       <Navigation />
       <Suspense fallback={<p>LOADING...</p>}>
         <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
+          <Route path="/" exact component={HomePage} />
 
-          <Route path="/movies/:movieId">
-            <MovieDetailsPage />
-          </Route>
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />
 
-          <Route path="/movies" exact>
-            <MoviesPage />
-          </Route>
+          <Route path="/movies" exact component={MoviesPage} />
+
+          <Redirect to="/" />
         </Switch>
       </Suspense>
       <ToastContainer position="top-center" autoClose={3000} />

@@ -18,6 +18,7 @@ const pictureBasePath = "https://image.tmdb.org/t/p/w300";
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { movieId } = useParams();
   const { url, path } = useRouteMatch();
   const history = useHistory();
@@ -27,11 +28,15 @@ const MovieDetailsPage = () => {
     getMovieDetails(movieId)
       .then(setMovie)
       .catch(({ message }) => toast.error(message));
-  }, [movieId]);
+
+    setSearchQuery(location.state.from.search);
+  }, [location.state.from.search, movieId]);
 
   const onGoBackClick = () => {
-    history.push(location?.state?.from ?? "/");
+    history.push(location?.state?.from ?? `/`);
   };
+
+  console.log("location.state.from ", location.state.from);
 
   return (
     <div className={s.pageWrapper}>
@@ -69,7 +74,16 @@ const MovieDetailsPage = () => {
             <ul className={s.infoList}>
               <li className={s.infoListItem}>
                 <NavLink
-                  to={`${url}/cast`}
+                  to={{
+                    pathname: `${url}/cast`,
+                    state: {
+                      from: {
+                        ...location,
+                        pathname: location.state.from.pathname,
+                        search: searchQuery,
+                      },
+                    },
+                  }}
                   className={`${s.infoLink} ${s.mr}`}
                   activeClassName={s.infoLinkActive}
                 >
@@ -78,7 +92,16 @@ const MovieDetailsPage = () => {
               </li>
               <li>
                 <NavLink
-                  to={`${url}/reviews`}
+                  to={{
+                    pathname: `${url}/reviews`,
+                    state: {
+                      from: {
+                        ...location,
+                        pathname: location.state.from.pathname,
+                        search: searchQuery,
+                      },
+                    },
+                  }}
                   className={s.infoLink}
                   activeClassName={s.infoLinkActive}
                 >
